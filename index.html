@@ -1,226 +1,144 @@
-<!-- KPQ tool template -->
 <div id="app">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap">
 
 <style>
 #app {
-  --deep:    #0B2B3C;
-  --shoal:   #F2E4C4;
-  --land:    #FBFAF5;
-  --water:   #C8DDE6;
-  --note:    #B0125E;
-  --sound:   #2F6B4F;
-  --grey:    #6C7B84;
-  --hair:    #B9CBD4;
+  --deep:  #0B2B3C;
+  --land:  #FBFAF5;
+  --water: #C8DDE6;
+  --note:  #B0125E;
+  --sound: #2F6B4F;
+  --amber: #B8791C;
+  --grey:  #6C7B84;
+  --hair:  #B9CBD4;
+  --rule:  #E6EDF0;
 
-  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--deep);
   background: var(--land);
-  line-height: 1.55;
+  line-height: 1.7;
   max-width: 1080px;
   margin: 0 auto;
 }
 #app *, #app *::before, #app *::after { box-sizing: border-box; }
 #app button:focus-visible, #app textarea:focus-visible { outline: 2px solid var(--note); outline-offset: 2px; }
 
-/* ---------- masthead ---------- */
-.kpq-head {
-  border-bottom: 2px solid var(--deep);
-  padding: 22px 24px 14px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.kpq-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 34px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  line-height: 1;
-  margin: 0;
-}
-.kpq-sub {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.10em;
-  color: var(--grey);
-  margin-top: 7px;
-  text-transform: uppercase;
-}
-.kpq-meta {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  text-align: right;
-  letter-spacing: 0.04em;
-}
-.kpq-meta b { color: var(--deep); font-weight: 600; }
-.kpq-meta .kpq-warn { color: var(--note); font-weight: 600; }
+/* ---- masthead ---- */
+.kpq-head { border-bottom: 2px solid var(--deep); padding: 20px 24px 13px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.kpq-title { font-size: 21px; font-weight: 700; letter-spacing: 0.02em; margin: 0; line-height: 1.35; }
+.kpq-sub { font-size: 12.5px; color: var(--grey); margin-top: 3px; }
+.kpq-meta { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--grey); text-align: right; letter-spacing: 0.03em; }
+.kpq-meta b { color: var(--deep); font-weight: 500; }
+.kpq-meta .kpq-warn { color: var(--note); font-weight: 500; }
 
-/* ---------- input ---------- */
-.kpq-body { padding: 22px 24px 40px; }
-.kpq-drop {
-  border: 1.5px dashed var(--hair);
-  background: #fff;
-  border-radius: 3px;
-  transition: border-color .15s, background .15s;
-}
+.kpq-body { padding: 20px 24px 44px; }
+
+/* ---- how it works ---- */
+.kpq-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hair); border: 1px solid var(--hair); margin-bottom: 22px; }
+.kpq-step { background: #fff; padding: 13px 15px 15px; }
+.kpq-num { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: var(--note); }
+.kpq-stepname { font-size: 14.5px; font-weight: 700; margin: 1px 0 3px; }
+.kpq-steptxt { font-size: 12.5px; color: var(--grey); line-height: 1.65; }
+
+.kpq-notice { border-left: 3px solid var(--note); background: #fff; padding: 10px 14px; font-size: 12.5px; margin-bottom: 20px; }
+.kpq-notice b { font-weight: 700; }
+
+/* ---- input ---- */
+.kpq-drop { border: 1.5px dashed var(--hair); background: #fff; transition: border-color .15s, background .15s; }
 .kpq-drop.kpq-over { border-color: var(--note); background: #fff6fa; }
-.kpq-ta {
-  width: 100%;
-  min-height: 190px;
-  border: 0;
-  background: transparent;
-  padding: 15px 16px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: var(--deep);
-  resize: vertical;
-}
-.kpq-ta::placeholder { color: #9BAEB8; }
-.kpq-bar {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  border-top: 1px solid #E6EDF0;
-  padding: 9px 14px;
-  flex-wrap: wrap;
-}
-.kpq-file {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  color: var(--grey);
-  letter-spacing: 0.03em;
-  flex: 1;
-  min-width: 140px;
-}
-.kpq-btn {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  background: var(--deep);
-  color: var(--land);
-  border: 0;
-  border-radius: 2px;
-  padding: 9px 20px;
-  cursor: pointer;
-}
+.kpq-ta { width: 100%; min-height: 175px; border: 0; background: transparent; padding: 14px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.65; color: var(--deep); resize: vertical; }
+.kpq-ta::placeholder { color: #9BAEB8; font-family: 'Noto Sans JP', sans-serif; }
+.kpq-bar { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--rule); padding: 9px 13px; flex-wrap: wrap; }
+.kpq-file { font-size: 11.5px; color: var(--grey); flex: 1; min-width: 130px; }
+.kpq-btn { font-size: 13.5px; font-weight: 500; background: var(--deep); color: var(--land); border: 0; border-radius: 2px; padding: 9px 18px; cursor: pointer; font-family: inherit; }
 .kpq-btn:hover { background: #143c52; }
 .kpq-btn:disabled { background: #A9BAC3; cursor: default; }
-.kpq-btn.kpq-ghost {
-  background: transparent;
-  color: var(--deep);
-  border: 1px solid var(--hair);
-}
+.kpq-btn.kpq-ghost { background: transparent; color: var(--deep); border: 1px solid var(--hair); }
 .kpq-btn.kpq-ghost:hover { background: var(--water); }
 
-/* ---------- soundings bar (signature) ---------- */
-.kpq-tally { margin: 26px 0 6px; display: none; }
-.kpq-tally.kpq-on { display: block; }
-.kpq-sound-row {
-  display: flex;
-  height: 9px;
-  border: 1px solid var(--deep);
-  overflow: hidden;
-}
-.kpq-sound-row span { display: block; height: 100%; }
-.kpq-legend {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 9px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  color: var(--grey);
-}
-.kpq-legend i { font-style: normal; display: inline-block; width: 9px; height: 9px; margin-right: 6px; vertical-align: -1px; }
-.kpq-legend b { font-weight: 600; color: var(--deep); }
-
-.kpq-status { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--grey); margin-top: 14px; letter-spacing: 0.04em; }
+.kpq-status { font-size: 12.5px; color: var(--grey); margin-top: 13px; }
 .kpq-err { color: var(--note); }
 
-/* ---------- results ---------- */
-.kpq-results { margin-top: 22px; }
-.kpq-row {
-  display: grid;
-  grid-template-columns: 4px 1fr;
-  gap: 0 16px;
-  border-bottom: 1px solid #E6EDF0;
-  padding: 0;
-}
+/* ---- tally ---- */
+.kpq-tally { margin: 24px 0 4px; display: none; }
+.kpq-tally.kpq-on { display: block; }
+.kpq-sound-row { display: flex; height: 10px; border: 1px solid var(--deep); overflow: hidden; }
+.kpq-sound-row span { display: block; height: 100%; }
+.kpq-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 9px; font-size: 12px; color: var(--grey); }
+.kpq-legend i { font-style: normal; display: inline-block; width: 9px; height: 9px; margin-right: 6px; vertical-align: 0px; }
+.kpq-legend b { font-weight: 700; color: var(--deep); }
+
+/* ---- results ---- */
+.kpq-empty-state { margin-top: 26px; padding: 26px 20px; border: 1px dashed var(--hair); text-align: center; color: var(--grey); font-size: 13px; background: #fff; }
+.kpq-results { margin-top: 20px; }
+.kpq-row { display: grid; grid-template-columns: 4px 1fr; border-bottom: 1px solid var(--rule); }
 .kpq-tick { background: var(--sound); }
-.kpq-inner { padding: 14px 0 15px; }
-.kpq-q {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  margin: 0 0 5px;
-}
-.kpq-a { font-size: 14.5px; margin: 0 0 7px; white-space: pre-wrap; }
-.kpq-a.kpq-empty { color: var(--note); font-style: italic; }
-.kpq-tags {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.06em;
-  color: var(--grey);
-  text-transform: uppercase;
-}
-.kpq-flag { color: var(--note); font-weight: 600; }
-.kpq-key { color: #8A9BA4; }
+.kpq-inner { padding: 15px 0 16px 16px; }
+.kpq-act { font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
+.kpq-qja { font-size: 15.5px; font-weight: 700; margin: 0 0 2px; line-height: 1.55; }
+.kpq-qen { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #90A3AC; margin: 0 0 9px; line-height: 1.5; }
+.kpq-alabel { font-size: 10.5px; letter-spacing: 0.1em; color: var(--grey); margin-bottom: 2px; }
+.kpq-a { font-size: 14px; margin: 0; padding: 8px 11px; background: #fff; border: 1px solid var(--rule); white-space: pre-wrap; }
+.kpq-a.kpq-blank { color: var(--note); background: #fff6fa; border-color: #F0C9DC; }
+.kpq-aja { font-size: 12.5px; color: var(--grey); margin: 5px 0 0; }
+.kpq-key { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #A6B6BE; margin-top: 6px; }
 
-.kpq-foot { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
-.kpq-out {
-  width: 100%;
-  min-height: 150px;
-  margin-top: 14px;
-  border: 1px solid var(--hair);
-  border-radius: 3px;
-  padding: 12px 14px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  line-height: 1.6;
-  display: none;
-  background: #fff;
-  color: var(--deep);
-}
-.kpq-out.kpq-on { display: block; }
+.kpq-foot { margin-top: 22px; display: none; gap: 9px; flex-wrap: wrap; }
+.kpq-foot.kpq-on { display: flex; }
+.kpq-outwrap { display: none; margin-top: 13px; }
+.kpq-outwrap.kpq-on { display: block; }
+.kpq-outnote { font-size: 12px; color: var(--grey); margin-bottom: 5px; }
+.kpq-out { width: 100%; min-height: 160px; border: 1px solid var(--hair); padding: 12px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.65; background: #fff; color: var(--deep); }
 
-@media (max-width: 620px) {
-  .kpq-title { font-size: 26px; }
+@media (max-width: 680px) {
+  .kpq-steps { grid-template-columns: 1fr; }
   .kpq-meta { text-align: left; }
 }
-@media (prefers-reduced-motion: reduce) {
-  #app * { transition: none !important; }
-}
+@media (prefers-reduced-motion: reduce) { #app * { transition: none !important; } }
 </style>
 
 <div class="kpq-head">
   <div>
-    <h1 class="kpq-title">Kagoshima &mdash; Port Questionnaire</h1>
-    <div class="kpq-sub">Answers drawn from the ledger only &middot; nothing generated</div>
+    <h1 class="kpq-title">鹿児島港 質問票 回答アシスタント</h1>
+    <div class="kpq-sub">台帳にある事実だけを使います。台帳にないことは答えません。</div>
   </div>
   <div class="kpq-meta">
-    <div>Ledger <b id="kpqCount">0</b> entries</div>
-    <div class="kpq-warn" id="kpqConf">0 unresolved conflicts</div>
+    <div>台帳 <b id="kpqCount">—</b> 項目</div>
+    <div class="kpq-warn" id="kpqConf">読み込み中</div>
   </div>
 </div>
 
 <div class="kpq-body">
 
+  <div class="kpq-steps">
+    <div class="kpq-step">
+      <div class="kpq-num">STEP 1</div>
+      <div class="kpq-stepname">質問票を入れる</div>
+      <div class="kpq-steptxt">Wordファイルを下の枠にドラッグするか、メール本文をコピーして貼り付けます。</div>
+    </div>
+    <div class="kpq-step">
+      <div class="kpq-num">STEP 2</div>
+      <div class="kpq-stepname">回答をつくる</div>
+      <div class="kpq-steptxt">質問が日本語訳つきで並び、答えられるものには英文の回答案が入ります。</div>
+    </div>
+    <div class="kpq-step">
+      <div class="kpq-num">STEP 3</div>
+      <div class="kpq-stepname">残りを自分で埋める</div>
+      <div class="kpq-steptxt">色がついた行だけ手で直します。終わったらコピーしてメールに貼ります。</div>
+    </div>
+  </div>
+
+  <div class="kpq-notice">
+    <b>回答案が英語なのは、それがそのまま相手に送る文章だからです。</b>
+    日本語は内容を確かめるための訳で、送る文章には含まれません。
+  </div>
+
   <div class="kpq-drop" id="kpqDrop">
-    <textarea class="kpq-ta" id="kpqIn" placeholder="Paste the questionnaire here, or drop a .docx / .xlsx / .txt file anywhere in this box."></textarea>
+    <textarea class="kpq-ta" id="kpqIn" placeholder="ここに質問票を貼り付けてください。&#10;Word（.docx）や Excel（.xlsx）のファイルは、この枠にドラッグしても読み込めます。"></textarea>
     <div class="kpq-bar">
-      <span class="kpq-file" id="kpqFile">No file loaded</span>
-      <button class="kpq-btn kpq-ghost" id="kpqClear">Clear</button>
-      <button class="kpq-btn" id="kpqRun" disabled>Draft answers</button>
+      <span class="kpq-file" id="kpqFile">ファイルは読み込んでいません</span>
+      <button class="kpq-btn kpq-ghost" id="kpqClear">消す</button>
+      <button class="kpq-btn" id="kpqRun" disabled>回答をつくる</button>
     </div>
   </div>
 
@@ -231,14 +149,22 @@
     <div class="kpq-legend" id="kpqLegend"></div>
   </div>
 
+  <div class="kpq-empty-state" id="kpqEmpty">
+    まだ何も読み込んでいません。質問票を貼り付けて「回答をつくる」を押してください。
+  </div>
+
   <div class="kpq-results" id="kpqResults"></div>
 
-  <div class="kpq-foot" id="kpqFoot" style="display:none">
-    <button class="kpq-btn kpq-ghost" id="kpqCopy">Copy all answers</button>
-    <button class="kpq-btn kpq-ghost" id="kpqCopyFlag">Copy items needing attention</button>
-    <button class="kpq-btn kpq-ghost" id="kpqCopyNew">Draft ledger entries for gaps</button>
+  <div class="kpq-foot" id="kpqFoot">
+    <button class="kpq-btn kpq-ghost" id="kpqCopy">英文をぜんぶコピー</button>
+    <button class="kpq-btn kpq-ghost" id="kpqCopyFlag">手直しが要る行だけ表示</button>
+    <button class="kpq-btn kpq-ghost" id="kpqCopyNew">台帳に足す項目を出す</button>
   </div>
-  <textarea class="kpq-out" id="kpqOut" readonly></textarea>
+
+  <div class="kpq-outwrap" id="kpqOutWrap">
+    <div class="kpq-outnote" id="kpqOutNote"></div>
+    <textarea class="kpq-out" id="kpqOut" readonly></textarea>
+  </div>
 
 </div>
 </div>
@@ -249,121 +175,43 @@
 (function () {
   const $ = id => document.getElementById(id);
 
-  let facts = [], conflicts = [], compact = [], conflictText = '', SYSTEM = '';
+  let facts = [], conflicts = [], SYSTEM = '', results = [];
 
+  // 何をすべきかを名前にする。状態名ではなく動詞で書く。
+  const ACTION = {
+    confirmed:     { label: 'そのまま使えます',          colour: '#2F6B4F' },
+    single_source: { label: '念のため目を通す',          colour: '#7FA08C' },
+    conflict:      { label: '値が食い違い。自分で決める', colour: '#B0125E' },
+    placeholder:   { label: '今回の値を入れる',          colour: '#B8791C' },
+    unmatched:     { label: '台帳にないので自分で答える', colour: '#6C7B84' }
+  };
+  const NEEDS_WORK = s => s === 'conflict' || s === 'placeholder' || s === 'unmatched';
+
+  /* ---------- ledger ---------- */
   fetch('./port_facts.json', { cache: 'no-cache' })
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(led => {
       facts = led.facts || [];
       conflicts = led.conflicts_requiring_resolution || [];
       $('kpqCount').textContent = facts.length;
-      $('kpqConf').textContent = conflicts.length + ' unresolved conflicts';
+      $('kpqConf').textContent = '未確定の食い違い ' + conflicts.length + ' 件';
       buildPrompt();
       $('kpqRun').disabled = false;
     })
     .catch(() => {
       $('kpqStatus').className = 'kpq-status kpq-err';
-      $('kpqStatus').textContent = 'port_facts.json could not be loaded. Check that it sits next to index.html.';
+      $('kpqStatus').textContent = '台帳（port_facts.json）を読み込めませんでした。index.html と同じ場所に置かれているか確認してください。';
     });
 
-
-  const STATUS_COLOUR = {
-    confirmed:     '#2F6B4F',
-    single_source: '#7FA08C',
-    conflict:      '#B0125E',
-    placeholder:   '#D9A441',
-    unmatched:     '#6C7B84'
-  };
-  const STATUS_LABEL = {
-    confirmed:     'Confirmed',
-    single_source: 'One source',
-    conflict:      'Conflict',
-    placeholder:   'Fill in per call',
-    unmatched:     'Not in ledger'
-  };
-
-  let results = [];
-
-  /* ---------- file handling ---------- */
-  const drop = $('kpqDrop');
-  ['dragenter', 'dragover'].forEach(e =>
-    drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.add('kpq-over'); }));
-  ['dragleave', 'drop'].forEach(e =>
-    drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.remove('kpq-over'); }));
-
-  drop.addEventListener('drop', ev => {
-    const file = ev.dataTransfer.files && ev.dataTransfer.files[0];
-    if (file) readFile(file);
-  });
-
-  function readFile(file) {
-    const name = file.name.toLowerCase();
-    $('kpqFile').textContent = 'Reading ' + file.name + '…';
-    const reader = new FileReader();
-
-    if (name.endsWith('.docx')) {
-      reader.onload = e => {
-        mammoth.convertToHtml({ arrayBuffer: e.target.result })
-          .then(r => {
-            const div = document.createElement('div');
-            div.innerHTML = r.value;
-            div.querySelectorAll('td, th').forEach(c => c.append(' | '));
-            div.querySelectorAll('tr, p, li').forEach(c => c.append('\n'));
-            $('kpqIn').value = div.textContent.replace(/\n{3,}/g, '\n\n').trim();
-            $('kpqFile').textContent = file.name;
-          })
-          .catch(() => { $('kpqFile').textContent = 'Could not read ' + file.name + ' — paste the text instead.'; });
-      };
-      reader.readAsArrayBuffer(file);
-
-    } else if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
-      reader.onload = e => {
-        try {
-          const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
-          const out = wb.SheetNames.map(n =>
-            '## ' + n + '\n' + XLSX.utils.sheet_to_csv(wb.Sheets[n], { blankrows: false })
-          ).join('\n\n');
-          $('kpqIn').value = out.trim();
-          $('kpqFile').textContent = file.name;
-        } catch (err) {
-          $('kpqFile').textContent = 'Could not read ' + file.name + ' — paste the text instead.';
-        }
-      };
-      reader.readAsArrayBuffer(file);
-
-    } else {
-      reader.onload = e => {
-        $('kpqIn').value = e.target.result;
-        $('kpqFile').textContent = file.name;
-      };
-      reader.readAsText(file);
-    }
-  }
-
-  /* ---------- chunking ---------- */
-  function chunk(text, size) {
-    const lines = text.split('\n');
-    const out = [];
-    let buf = '';
-    for (const line of lines) {
-      if (buf.length + line.length > size && buf.trim()) { out.push(buf); buf = ''; }
-      buf += line + '\n';
-    }
-    if (buf.trim()) out.push(buf);
-    return out;
-  }
-
-  /* ---------- API ---------- */
   function buildPrompt() {
-    // Compact ledger for the prompt — key, aliases, value, status only.
-    compact = facts.map(f => {
+    const compact = facts.map(f => {
       const o = { k: f.key, v: f.value, s: f.status };
       if (f.unit) o.u = f.unit;
       if (f.aliases && f.aliases.length) o.a = f.aliases;
       if (f.note) o.n = f.note;
       return o;
     });
-    conflictText = conflicts.map(c =>
+    const conflictText = conflicts.map(c =>
       c.key + ' :: ' + c.values.map(v => v.value + ' (' + v.source + ')').join('  |  ')
     ).join('\n');
 
@@ -379,17 +227,82 @@
       'RULES:',
       '1. Never invent, estimate, infer or round any fact. Every figure must come from the ledger verbatim.',
       '2. Match each question to a ledger key using its aliases and meaning, not its exact wording.',
-      '3. The ledger currently describes Marine Port Kagoshima No.1 Wharf only. If a question concerns a different berth, set status "unmatched" — never reuse No.1 Wharf figures for another berth.',
+      '3. The ledger describes Marine Port Kagoshima No.1 Wharf only. If a question concerns any other berth, set status "unmatched" — never reuse No.1 Wharf figures for another berth.',
       '4. If the matched key appears in UNRESOLVED CONFLICTS, set status "conflict" and write all conflicting values with their sources in answer_en.',
       '5. If the matched key has status "placeholder", set status "placeholder" and write a bracketed prompt such as "[ETA — confirm per call]".',
       '6. If no key matches, set status "unmatched" and leave answer_en as an empty string. Never guess.',
       '7. For yes/no or checkbox rows, start answer_en with exactly "Yes" or "No", then add the ledger qualifier if one exists.',
-      '8. Write in the plain factual English a port agent uses. No pleasantries.',
-      '9. Skip headings, section titles and instructions that are not questions.',
+      '8. answer_en is the text that will be sent to the cruise line. Write the plain factual English a port agent uses. No pleasantries.',
+      '9. question_ja is a short, natural Japanese rendering of the question, for a reader who does not read English. Keep it under 40 characters where possible.',
+      '10. answer_ja is a one-line Japanese gist of answer_en, for checking. Keep it short. Leave it empty if answer_en is empty.',
+      '11. Skip headings, section titles and instructions that are not questions.',
       '',
       'Return ONLY a JSON array, no markdown fences and no preamble:',
-      '[{"question":"...","key":"...","answer_en":"...","status":"confirmed|single_source|conflict|placeholder|unmatched"}]'
+      '[{"question":"...","question_ja":"...","key":"...","answer_en":"...","answer_ja":"...","status":"confirmed|single_source|conflict|placeholder|unmatched"}]'
     ].join('\n');
+  }
+
+  /* ---------- files ---------- */
+  const drop = $('kpqDrop');
+  ['dragenter', 'dragover'].forEach(e =>
+    drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.add('kpq-over'); }));
+  ['dragleave', 'drop'].forEach(e =>
+    drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.remove('kpq-over'); }));
+  drop.addEventListener('drop', ev => {
+    const file = ev.dataTransfer.files && ev.dataTransfer.files[0];
+    if (file) readFile(file);
+  });
+
+  function readFile(file) {
+    const name = file.name.toLowerCase();
+    $('kpqFile').textContent = file.name + ' を読み込んでいます…';
+    const reader = new FileReader();
+    const fail = () => { $('kpqFile').textContent = file.name + ' は読み込めませんでした。中身をコピーして貼り付けてください。'; };
+
+    if (name.endsWith('.docx')) {
+      reader.onload = e => {
+        mammoth.convertToHtml({ arrayBuffer: e.target.result })
+          .then(r => {
+            const div = document.createElement('div');
+            div.innerHTML = r.value;
+            div.querySelectorAll('td, th').forEach(c => c.append(' | '));
+            div.querySelectorAll('tr, p, li').forEach(c => c.append('\n'));
+            $('kpqIn').value = div.textContent.replace(/\n{3,}/g, '\n\n').trim();
+            $('kpqFile').textContent = file.name + ' を読み込みました';
+          }).catch(fail);
+      };
+      reader.readAsArrayBuffer(file);
+    } else if (name.endsWith('.xlsx') || name.endsWith('.xls')) {
+      reader.onload = e => {
+        try {
+          const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
+          $('kpqIn').value = wb.SheetNames
+            .map(n => '## ' + n + '\n' + XLSX.utils.sheet_to_csv(wb.Sheets[n], { blankrows: false }))
+            .join('\n\n').trim();
+          $('kpqFile').textContent = file.name + ' を読み込みました';
+        } catch (err) { fail(); }
+      };
+      reader.readAsArrayBuffer(file);
+    } else {
+      reader.onload = e => {
+        $('kpqIn').value = e.target.result;
+        $('kpqFile').textContent = file.name + ' を読み込みました';
+      };
+      reader.readAsText(file);
+    }
+  }
+
+  /* ---------- api ---------- */
+  function chunk(text, size) {
+    const lines = text.split('\n');
+    const out = [];
+    let buf = '';
+    for (const line of lines) {
+      if (buf.length + line.length > size && buf.trim()) { out.push(buf); buf = ''; }
+      buf += line + '\n';
+    }
+    if (buf.trim()) out.push(buf);
+    return out;
   }
 
   async function callAPI(part) {
@@ -400,152 +313,173 @@
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
-
     const text = (data.text || '').replace(/```json|```/g, '').trim();
-    const start = text.indexOf('[');
-    const end = text.lastIndexOf(']');
-    if (start === -1 || end === -1) return [];
-    return JSON.parse(text.slice(start, end + 1));
+    const a = text.indexOf('['), b = text.lastIndexOf(']');
+    if (a === -1 || b === -1) return [];
+    return JSON.parse(text.slice(a, b + 1));
   }
 
   /* ---------- render ---------- */
   function render() {
     const box = $('kpqResults');
     box.innerHTML = '';
+    $('kpqEmpty').style.display = results.length ? 'none' : 'block';
+
     results.forEach(r => {
-      const colour = STATUS_COLOUR[r.status] || STATUS_COLOUR.unmatched;
+      const act = ACTION[r.status] || ACTION.unmatched;
       const row = document.createElement('div');
       row.className = 'kpq-row';
 
       const tick = document.createElement('div');
       tick.className = 'kpq-tick';
-      tick.style.background = colour;
+      tick.style.background = act.colour;
 
       const inner = document.createElement('div');
       inner.className = 'kpq-inner';
 
-      const q = document.createElement('p');
-      q.className = 'kpq-q';
-      q.textContent = r.question;
+      const actline = document.createElement('div');
+      actline.className = 'kpq-act';
+      actline.style.color = act.colour;
+      actline.textContent = act.label;
+
+      const qja = document.createElement('p');
+      qja.className = 'kpq-qja';
+      qja.textContent = r.question_ja || r.question;
+
+      const qen = document.createElement('p');
+      qen.className = 'kpq-qen';
+      qen.textContent = r.question;
+
+      const alabel = document.createElement('div');
+      alabel.className = 'kpq-alabel';
+      alabel.textContent = '相手に送る英文';
 
       const a = document.createElement('p');
       a.className = 'kpq-a';
       if (r.answer_en && r.answer_en.trim()) {
         a.textContent = r.answer_en;
       } else {
-        a.className += ' kpq-empty';
-        a.textContent = 'No ledger entry covers this — answer by hand, then add it to the ledger.';
+        a.className += ' kpq-blank';
+        a.textContent = '（空欄）台帳にない質問です。自分で答えて、あとで台帳に足してください。';
       }
 
-      const tags = document.createElement('div');
-      tags.className = 'kpq-tags';
-      const flagged = r.status === 'conflict' || r.status === 'placeholder' || r.status === 'unmatched';
-      tags.innerHTML =
-        '<span class="' + (flagged ? 'kpq-flag' : '') + '">' + (STATUS_LABEL[r.status] || r.status) + '</span>' +
-        (r.key ? ' <span class="kpq-key">&middot; ' + r.key + '</span>' : '');
+      inner.append(actline, qja, qen, alabel, a);
 
-      inner.append(q, a, tags);
+      if (r.answer_ja && r.answer_ja.trim()) {
+        const aja = document.createElement('p');
+        aja.className = 'kpq-aja';
+        aja.textContent = '意味：' + r.answer_ja;
+        inner.append(aja);
+      }
+      if (r.key) {
+        const k = document.createElement('div');
+        k.className = 'kpq-key';
+        k.textContent = r.key;
+        inner.append(k);
+      }
+
       row.append(tick, inner);
       box.append(row);
     });
 
-    // soundings bar
     const counts = {};
     results.forEach(r => { counts[r.status] = (counts[r.status] || 0) + 1; });
-    const bar = $('kpqSoundRow');
-    const leg = $('kpqLegend');
-    bar.innerHTML = '';
-    leg.innerHTML = '';
-    Object.keys(STATUS_COLOUR).forEach(s => {
+    const bar = $('kpqSoundRow'), leg = $('kpqLegend');
+    bar.innerHTML = ''; leg.innerHTML = '';
+    Object.keys(ACTION).forEach(s => {
       const n = counts[s] || 0;
       if (!n) return;
       const seg = document.createElement('span');
-      seg.style.background = STATUS_COLOUR[s];
+      seg.style.background = ACTION[s].colour;
       seg.style.flex = n;
       bar.append(seg);
       const item = document.createElement('div');
-      item.innerHTML = '<i style="background:' + STATUS_COLOUR[s] + '"></i>' +
-                       STATUS_LABEL[s] + ' <b>' + n + '</b>';
+      item.innerHTML = '<i style="background:' + ACTION[s].colour + '"></i>' + ACTION[s].label + ' <b>' + n + '</b>';
       leg.append(item);
     });
     $('kpqTally').classList.toggle('kpq-on', results.length > 0);
-    $('kpqFoot').style.display = results.length ? 'flex' : 'none';
+    $('kpqFoot').classList.toggle('kpq-on', results.length > 0);
   }
 
   /* ---------- run ---------- */
   $('kpqRun').addEventListener('click', async () => {
     const text = $('kpqIn').value.trim();
-    if (!text) { $('kpqStatus').textContent = 'Paste a questionnaire or drop a file first.'; return; }
-
+    if (!text) {
+      $('kpqStatus').className = 'kpq-status kpq-err';
+      $('kpqStatus').textContent = 'まず質問票を貼り付けるか、ファイルをドラッグしてください。';
+      return;
+    }
     const parts = chunk(text, 6000);
-    results = [];
-    render();
+    results = []; render();
     $('kpqRun').disabled = true;
-    $('kpqOut').classList.remove('kpq-on');
+    $('kpqOutWrap').classList.remove('kpq-on');
     $('kpqStatus').className = 'kpq-status';
 
     for (let i = 0; i < parts.length; i++) {
-      $('kpqStatus').textContent = 'Section ' + (i + 1) + ' of ' + parts.length + ' — ' + results.length + ' questions answered so far';
+      $('kpqStatus').textContent = parts.length + ' 区切りのうち ' + (i + 1) + ' 個目を処理中。ここまで ' + results.length + ' 問。';
       try {
-        const rows = await callAPI(parts[i]);
-        results = results.concat(rows);
+        results = results.concat(await callAPI(parts[i]));
         render();
       } catch (err) {
         $('kpqStatus').className = 'kpq-status kpq-err';
-        $('kpqStatus').textContent = 'Section ' + (i + 1) + ' failed. The other sections are still listed below — run it again to retry.';
+        $('kpqStatus').textContent = (i + 1) + ' 個目で止まりました（' + err.message + '）。ほかの分は下に出ています。もう一度押すとやり直せます。';
       }
     }
-
     $('kpqRun').disabled = false;
-    const flagged = results.filter(r => r.status !== 'confirmed' && r.status !== 'single_source').length;
+    const todo = results.filter(r => NEEDS_WORK(r.status)).length;
     $('kpqStatus').className = 'kpq-status';
-    $('kpqStatus').textContent = results.length + ' questions answered · ' + flagged + ' need your attention before sending';
+    $('kpqStatus').textContent = todo === 0
+      ? results.length + ' 問すべて台帳で答えられました。そのままコピーして送れます。'
+      : results.length + ' 問のうち ' + todo + ' 問が手直し待ちです。色のついた行を上から片付けてください。';
   });
 
   $('kpqClear').addEventListener('click', () => {
     $('kpqIn').value = '';
-    $('kpqFile').textContent = 'No file loaded';
-    results = [];
-    render();
+    $('kpqFile').textContent = 'ファイルは読み込んでいません';
+    results = []; render();
     $('kpqStatus').textContent = '';
-    $('kpqOut').classList.remove('kpq-on');
+    $('kpqOutWrap').classList.remove('kpq-on');
   });
 
-  function toText(list) {
-    return list.map(r =>
-      r.question + '\n' + (r.answer_en && r.answer_en.trim() ? r.answer_en : '[ANSWER BY HAND]') +
-      '   <' + (STATUS_LABEL[r.status] || r.status) + '>'
-    ).join('\n\n');
+  /* ---------- output ---------- */
+  function show(note, value) {
+    $('kpqOutNote').textContent = note;
+    $('kpqOut').value = value;
+    $('kpqOutWrap').classList.add('kpq-on');
+    $('kpqOut').select();
   }
+  const toText = list => list.map(r =>
+    r.question + '\n' + (r.answer_en && r.answer_en.trim() ? r.answer_en : '[ここは自分で書く]')
+  ).join('\n\n');
+
   $('kpqCopy').addEventListener('click', () => {
-    $('kpqOut').value = toText(results);
-    $('kpqOut').classList.add('kpq-on');
-    $('kpqOut').select();
-  });
-  $('kpqCopyFlag').addEventListener('click', () => {
-    $('kpqOut').value = toText(results.filter(r => r.status !== 'confirmed' && r.status !== 'single_source'));
-    $('kpqOut').classList.add('kpq-on');
-    $('kpqOut').select();
+    show('この英文をコピーしてメールに貼ってください。日本語は入っていません。', toText(results));
   });
 
-  // Every gap is a ledger entry waiting to be written. Emit it ready to paste.
+  $('kpqCopyFlag').addEventListener('click', () => {
+    const todo = results.filter(r => NEEDS_WORK(r.status));
+    show(
+      todo.length ? '手直しが要る ' + todo.length + ' 問です。' : '手直しが要る行はありません。',
+      todo.length ? toText(todo) : ''
+    );
+  });
+
   $('kpqCopyNew').addEventListener('click', () => {
     const gaps = results.filter(r => r.status === 'unmatched');
     if (!gaps.length) {
-      $('kpqOut').value = 'No gaps in this questionnaire — the ledger covered every question.';
-    } else {
-      $('kpqOut').value =
-        '// Fill in each value, then paste into the "facts" array of port_facts.json\n' +
-        JSON.stringify(gaps.map(r => ({
-          key: '',
-          value: null,
-          aliases: [r.question],
-          status: 'single_source',
-          volatility: 'stable'
-        })), null, 2);
+      show('台帳にない質問はありませんでした。', '');
+      return;
     }
-    $('kpqOut').classList.add('kpq-on');
-    $('kpqOut').select();
+    show(
+      'key と value を埋めて、port_facts.json の facts 配列の末尾に貼ってください。次からは自動で答えます。',
+      JSON.stringify(gaps.map(r => ({
+        key: '',
+        value: null,
+        aliases: [r.question],
+        status: 'single_source',
+        volatility: 'stable'
+      })), null, 2)
+    );
   });
 })();
 </script>
