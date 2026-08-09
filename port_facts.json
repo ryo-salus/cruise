@@ -1,0 +1,1148 @@
+{
+  "meta": {
+    "port": "Kagoshima",
+    "primary_berth": "Marine Port Kagoshima No.1 Wharf",
+    "generated_from": [
+      "2025_Kagoshima_Questionnaire.doc (Celebrity Millennium, 2025-01-05)",
+      "General_Port_Questionnaire_1__1_.xlsx (unnamed line)",
+      "Discovery_Princess_-_Port_Info_Questionnaire_-_Kagoshima_18-10-2025.docx (2025-10-18)",
+      "Adora_-Port_Questionnaire_.docx (2026-07-22)"
+    ],
+    "schema_version": "0.1-draft",
+    "volatility_legend": {
+      "stable": "構造物・地理。ほぼ変わらない",
+      "periodic": "料金・設備。年単位で改訂される。要定期見直し",
+      "per_call": "寄港ごとに変わる。台帳から埋めてはいけない",
+      "per_line": "船社ごとに変わる。船社プロファイル側で持つ",
+      "expiring": "有効期限あり。日付とセットで扱う"
+    },
+    "status_legend": {
+      "confirmed": "複数ソースで一致",
+      "single_source": "1ソースのみ。裏取り推奨",
+      "conflict": "ソース間で矛盾。要確定",
+      "placeholder": "毎回入力する項目。空欄で出力する"
+    }
+  },
+
+  "conflicts_requiring_resolution": [
+    {
+      "key": "tug.notice_days",
+      "values": [
+        { "value": 3, "source": "Discovery Princess 2025-10-18" },
+        { "value": 5, "source": "Adora 2026-07-22" }
+      ],
+      "note": "タグ手配の事前通知日数。運用に直結するため最優先で確定"
+    },
+    {
+      "key": "forklift.notice_days",
+      "values": [
+        { "value": 3, "source": "Discovery Princess 2025-10-18" },
+        { "value": 7, "source": "Celebrity Millennium 2025-01-05" }
+      ],
+      "note": "フォークリフト手配の事前通知日数"
+    },
+    {
+      "key": "fresh_water.overtime_window",
+      "values": [
+        { "value": "0700-0900 / 1600-2000", "source": "Discovery Princess 2025-10-18" },
+        { "value": "0600-0900 / 1600-2000", "source": "General Port Questionnaire" },
+        { "value": "0600-0900 / 1600-2000", "source": "Celebrity Millennium 2025-01-05" }
+      ],
+      "note": "2対1でDiscovery側が誤りの可能性が高い。要確認"
+    },
+    {
+      "key": "fender.count",
+      "values": [
+        { "value": "7 pcs", "source": "Discovery Princess 2025-10-18" },
+        { "value": "8 pcs", "source": "Adora 2026-07-22" }
+      ],
+      "note": "ヨコハマフェンダーの数量。実数の確認が必要"
+    },
+    {
+      "key": "berth.height",
+      "values": [
+        { "value": "4.0 m from chart datum (0.0m tide)", "source": "Discovery Princess 2025-10-18" },
+        { "value": "MLLW 3.30 m / MHHW 1.20 m", "source": "Adora 2026-07-22" }
+      ],
+      "note": "基準面が異なる表現。矛盾ではない可能性があるが、換算根拠を定義しないと毎回ブレる"
+    },
+    {
+      "key": "bollard.spec",
+      "values": [
+        { "value": "50T x21 + 150T x6 + 200T mooring post x2", "source": "Discovery Princess 2025-10-18" },
+        { "value": "50T x21 + 150T x6", "source": "Adora 2026-07-22" }
+      ],
+      "note": "Adora回答では200Tムアリングポストが欠落。記載漏れか撤去かの確認"
+    },
+    {
+      "key": "cruise_berth.count",
+      "values": [
+        { "value": "Two(2) berths — Marine Port No.1 & No.2 wharf, Kita-Futo No.1 wharf", "source": "Adora 2026-07-22" }
+      ],
+      "note": "同一回答内で矛盾。「2バース」と書きながら3つの岸壁名を列挙している"
+    },
+    {
+      "key": "current.max",
+      "values": [
+        { "value": "Max 0.5 kn (flood/ebb)", "source": "Discovery Princess 2025-10-18" },
+        { "value": "South, 0.2-0.5 kn", "source": "Adora 2026-07-22" }
+      ],
+      "note": "方向の記載有無が異なる。統一表現を決める"
+    },
+    {
+      "key": "tug.power_unit",
+      "values": [
+        { "value": "PS表記 (4400 PS / 3600 PS)", "source": "Discovery Princess 2025-10-18" },
+        { "value": "HP表記 (4400HP / 3600HP)", "source": "Adora 2026-07-22" }
+      ],
+      "note": "PSとHPは約1.4%異なる別単位。どちらで統一するか決める"
+    }
+  ],
+
+  "facts": [
+    {
+      "key": "berth.name",
+      "value": "Marine Port Kagoshima No.1 Wharf",
+      "aliases": ["Name of berth", "Berth name", "Our assigned berth", "Name of Berth"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.type",
+      "value": "Cruise",
+      "aliases": ["Type of Berth"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.length_m",
+      "value": 340,
+      "unit": "m",
+      "aliases": ["Berth length", "LENGTH OF THE BERTH", "Quay length"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.max_authorized_length_m",
+      "value": 348,
+      "unit": "m",
+      "aliases": ["Maximum authorized length", "Max. length"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.depth_alongside_m",
+      "value": 9.5,
+      "unit": "m",
+      "aliases": ["Depth alongside", "Depth of water at berths"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.max_draft_m",
+      "value": 8.55,
+      "unit": "m",
+      "aliases": ["Maximum authorised vessel draft", "Draft restrictions", "Max. draft"],
+      "status": "confirmed",
+      "volatility": "stable",
+      "note": "10% UKC required for water depth 9.5 m"
+    },
+    {
+      "key": "berth.ukc_requirement",
+      "value": "10% UKC required (water depth 9.5 m)",
+      "aliases": ["Under Keel Clearance", "Minimum UKC"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.depth_maintained_to_wall",
+      "value": "Yes",
+      "aliases": ["Is depth maintained all the way up to the harbour wall"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.apron_width_m",
+      "value": 20,
+      "unit": "m",
+      "aliases": ["Pier width", "Distance between pier edge and first obstruction"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.side_alongside",
+      "value": "Both available (Bow-in Starboard / Bow-out Port side)",
+      "aliases": ["Recommended side alongside"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.obstructions",
+      "value": "None",
+      "aliases": ["Potential obstructions with overhanging lifeboats"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.bollard_interval_m",
+      "value": 17.0,
+      "unit": "m",
+      "aliases": ["Distance between bollards"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.fender_type",
+      "value": "Yokohama air fender, diameter 2.5 m, length 4.00 m, interval 17.5 m",
+      "aliases": ["Fenders type", "Fenders"],
+      "status": "conflict",
+      "volatility": "stable",
+      "conflict_ref": "fender.count"
+    },
+    {
+      "key": "berth.air_draft_restriction",
+      "value": "None",
+      "aliases": ["Air draft restrictions"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "berth.shore_power",
+      "value": "Not available",
+      "aliases": ["Shore power availability", "Is shore power available"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "berth.shore_gangway",
+      "value": "Not available — ship's gangway to be used",
+      "aliases": ["Shore gangways available", "Are there shore gangways available at this berth"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "berth.passenger_boarding_bridge",
+      "value": "Not available",
+      "aliases": ["Passenger boarding bridges"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+
+    {
+      "key": "nav.pilot_boarding_position",
+      "value": "31-30.3N, 130-34.4E (Kagoshima Pilot Station)",
+      "aliases": ["Pilot boarding position", "Preferred pilot boarding station", "Anchor position"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.pilot_station_distance_nm",
+      "value": 2.2,
+      "unit": "nm",
+      "aliases": ["Distance from pilot station to berth"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.vhf_channel",
+      "value": "VHF Ch.16",
+      "aliases": ["Working channel VHF", "VHF channel for pilot station"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.pilotage_available",
+      "value": "Yes",
+      "aliases": ["Is pilotage available"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.speed_limit",
+      "value": "No harbour speed limit. Reduce to under 7.0 kn when pilot boards at Kagoshima Pilot Station.",
+      "aliases": ["Speed limits in the harbour", "Speed for pilot boat at transfer"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.approach_channel_width_m",
+      "value": 300,
+      "unit": "m",
+      "aliases": ["Width of approach channel"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.approach_channel_depth_m",
+      "value": 29,
+      "unit": "m",
+      "aliases": ["Depth of approach channel"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.approach_buoyed",
+      "value": "No",
+      "aliases": ["Is approach buoyed"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.navigational_dangers",
+      "value": "None",
+      "aliases": ["Navigational dangers on approach"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.tidal_restriction",
+      "value": "No tidal or time restriction on port entry",
+      "aliases": ["Are call times restricted by tidal times", "Time restrictions on port entry"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.predominant_weather",
+      "value": "NNW, 3.4 m/s",
+      "aliases": ["Predominant weather", "Average wind direction and speed"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "nav.months_to_avoid",
+      "value": "None",
+      "aliases": ["Months to be avoided due to extreme temperatures or weather"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.coastguard_approval_required",
+      "value": "No",
+      "aliases": ["Local Coastguard approval required prior to planning a call"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "nav.time_zone",
+      "value": "UTC +9.0 hrs (no DST)",
+      "aliases": ["Time zone", "Local timezone"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+
+    {
+      "key": "tug.compulsory_condition",
+      "value": "Compulsory on arrival for passenger ships over 70,000 GT. Not compulsory on departure.",
+      "aliases": ["Are tugs compulsory"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tug.count_available",
+      "value": 3,
+      "aliases": ["Number of tugs available"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tug.fleet",
+      "value": [
+        { "name": "Meiko Maru", "type": "ZP", "power": "4400", "bollard_pull_fwd_t": 60.9, "bollard_pull_bwd_t": 57.0 },
+        { "name": "Kaiko Maru", "type": "ZP", "power": "3600", "bollard_pull_fwd_t": 51.0, "bollard_pull_bwd_t": 47.5 },
+        { "name": "Choko Maru", "type": "ZP", "power": "3600", "bollard_pull_fwd_t": 51.0, "bollard_pull_bwd_t": 45.5 }
+      ],
+      "status": "conflict",
+      "volatility": "periodic",
+      "conflict_ref": "tug.power_unit"
+    },
+    {
+      "key": "tug.price_basic_jpy",
+      "value": 670000,
+      "unit": "JPY",
+      "aliases": ["Tug price", "Cost of tugs"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tug.working_hours",
+      "value": "0800-1700 LT",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tug.surcharge",
+      "value": "Overtime +15% (0500-0800, 1700-2200). Sunday / national holiday +30%.",
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tug.notice_days",
+      "value": null,
+      "status": "conflict",
+      "volatility": "periodic",
+      "conflict_ref": "tug.notice_days"
+    },
+    {
+      "key": "tug.ordering_method",
+      "value": "Via port agent",
+      "aliases": ["Method of ordering tugs"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+
+    {
+      "key": "fresh_water.available",
+      "value": "Available via shore hose connection (pipeline)",
+      "aliases": ["Is fresh water available", "Fresh water availability"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "fresh_water.rate_jpy_per_ton",
+      "value": 715,
+      "unit": "JPY/ton",
+      "aliases": ["Fresh water rate", "Fresh water cost"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "fresh_water.working_hours",
+      "value": "0900-1600 LT",
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "fresh_water.surcharge",
+      "value": "Overtime +50% (JPY 1,073/ton). Saturday / Sunday / national holiday +50%.",
+      "status": "conflict",
+      "volatility": "periodic",
+      "conflict_ref": "fresh_water.overtime_window"
+    },
+    {
+      "key": "fresh_water.connection",
+      "value": "65 mm connection (Japanese standard fire hose, \"Machinoshiki\")",
+      "aliases": ["Method of supply", "Connection size"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "fresh_water.flow_rate",
+      "value": "Approx. 30-35 m3/h per hose; up to 2 hoses simultaneously",
+      "aliases": ["Rate of flow"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "fresh_water.minimum_order_mt",
+      "value": 10,
+      "unit": "MT",
+      "status": "single_source",
+      "volatility": "periodic",
+      "note": "Cancellation charge applies if cancelled after arrival"
+    },
+    {
+      "key": "fresh_water.notice_days",
+      "value": 3,
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "fresh_water.certificate_available",
+      "value": "Yes",
+      "aliases": ["Is a fresh water certificate available", "Microbiological test"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+
+    {
+      "key": "bunkering.available",
+      "value": "Not available at this port — refer to the line's general agent",
+      "aliases": ["Are bunkering services available", "Fuel bunkering", "Availability of fuel"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "lng_supply.available",
+      "value": "No",
+      "aliases": ["LNG supply operations"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "sludge_bilge.available",
+      "value": "Not available at this port — refer to the line's general agent",
+      "aliases": ["Sludge discharge", "Sludge & bilge removal"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "sewage.discharge_available",
+      "value": "Not available",
+      "aliases": ["Sewage discharge", "Grey water & black water removal"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+
+    {
+      "key": "garbage.available",
+      "value": "Available. Discharged by forklift, transferred by shore trucks (6-7 cbm capacity).",
+      "aliases": ["Is garbage removal available", "Solid waste removal", "Waste removal services"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "garbage.marpol_annex_v",
+      "value": {
+        "A_plastic": "Acceptable",
+        "B_food_waste": "Acceptable (must be in flexible container bag when discharging)",
+        "C_ground_down_paper_rags_glass_metal_bottles_crockery": "Acceptable",
+        "D_cooking_oil": "NOT acceptable",
+        "E_incinerator_ash": "NOT acceptable"
+      },
+      "aliases": ["Types of waste removal available", "Waste categories"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "garbage.notice_days",
+      "value": 7,
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "garbage.recyclable_removal",
+      "value": "Not available",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "garbage.hazardous_removal",
+      "value": "Not available",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "garbage.cooking_oil_removal",
+      "value": "Not available",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "garbage.waste_declaration",
+      "value": "Required. Ship's form acceptable.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+
+    {
+      "key": "forklift.available",
+      "value": "Available",
+      "aliases": ["Forklift + operator available", "Fork lift/crane"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "forklift.price_2h_jpy",
+      "value": 110000,
+      "unit": "JPY",
+      "status": "confirmed",
+      "volatility": "periodic",
+      "note": "0830-1700 on weekdays"
+    },
+    {
+      "key": "forklift.price_full_day_jpy",
+      "value": 160000,
+      "unit": "JPY",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "forklift.surcharge",
+      "value": "Overtime +30% (0500-0830 / 1700-2200). Saturday / Sunday / national holiday +30%.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "forklift.notice_days",
+      "value": null,
+      "status": "conflict",
+      "volatility": "periodic",
+      "conflict_ref": "forklift.notice_days"
+    },
+    {
+      "key": "cherry_picker.available",
+      "value": "Not available",
+      "aliases": ["Is cherry picker available"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+
+    {
+      "key": "terminal.facility_type",
+      "value": "Terminal building — one (1) terminal plus one (1) small single-story rest area",
+      "aliases": ["What kind of terminal facility is available"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "terminal.total_area_sqm",
+      "value": 2340,
+      "unit": "sqm",
+      "aliases": ["Total terminal area"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "terminal.capacity_pax",
+      "value": 300,
+      "aliases": ["Terminal capacity"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "terminal.waiting_area_seats",
+      "value": 100,
+      "aliases": ["Waiting area seats"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "terminal.public_areas",
+      "value": "Information desk, souvenir shop, money exchange machine inside the terminal. Food trucks outside.",
+      "aliases": ["Are there public areas in the terminal"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "terminal.immigration_booths",
+      "value": 20,
+      "aliases": ["Number of immigration booths"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "terminal.customs_booths",
+      "value": 6,
+      "aliases": ["Number of customs booths"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "terminal.shared_with_other_berths",
+      "value": "No",
+      "status": "single_source",
+      "volatility": "stable"
+    },
+
+    {
+      "key": "transport.taxi_availability",
+      "value": "Taxi stand directly in front of the terminal. Approx. 10 vehicle spaces for drop-off / pick-up.",
+      "aliases": ["Are taxis available at the port", "Taxi drop-off/pick-up area"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "transport.taxi_payment",
+      "value": "USD not accepted. Most taxi companies accept credit cards, but confirmation before boarding is recommended.",
+      "aliases": ["Do taxis accept US Dollars", "Do taxis accept credit card"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "transport.bus_spaces",
+      "value": 215,
+      "aliases": ["Bus loading bays", "Buses"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "transport.parking_stalls",
+      "value": 657,
+      "aliases": ["Parking area"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "transport.shuttle_bus",
+      "value": "No shuttle bus service provided by the port. Contact tour operator.",
+      "aliases": ["Are free shuttle busses provided by the port", "Shuttles"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "transport.distance_to_city_centre_km",
+      "value": 8,
+      "unit": "km",
+      "aliases": ["Distance between port exit and city center", "Main shopping area distance"],
+      "status": "confirmed",
+      "volatility": "stable",
+      "note": "City centre / main shopping area is Tenmonkan"
+    },
+    {
+      "key": "transport.distance_to_airport",
+      "value": "Approx. 50 km, approx. 1 hour by taxi, approx. JPY 15,000",
+      "aliases": ["Nearest airport", "Taxi ride cost to airport"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "transport.distance_ship_to_gate_m",
+      "value": 100,
+      "unit": "m",
+      "aliases": ["Distance from vessel to port exit"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+
+    {
+      "key": "security.isps_certified",
+      "value": "Yes. Security guards stationed at the gate in front of the SOLAS fence; general public not admitted inside.",
+      "aliases": ["Is the port ISPS certified"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "security.isps_area_start_m",
+      "value": 100,
+      "unit": "m",
+      "aliases": ["How close to the pier does the ISPS area start"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "security.level",
+      "value": "Security Level 1",
+      "aliases": ["Current ISPS security level"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "security.provider",
+      "value": "Nangoku Security Co., Ltd. (private security company)",
+      "aliases": ["Who is performing the security controls", "Name of security provider"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "security.personnel_per_line",
+      "value": "At least 8 security guards in total",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "security.screening_location",
+      "value": "All screening is conducted on board by the ship's security team. Shoreside luggage screening not available.",
+      "aliases": ["Is luggage screening available shoreside"],
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "security.cctv_manning",
+      "value": "Manned 24 hours; recordings retained 7 days",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "security.k9_available",
+      "value": "No",
+      "aliases": ["Is K9 available"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "security.vehicle_access",
+      "value": "Taxi, excursion bus, shuttle bus, private cars and agent cars permitted. Advance registration required for vehicles entering the SOLAS-restricted area.",
+      "aliases": ["Who is allowed to enter the port/pier"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "security.visitor_notice_days",
+      "value": 5,
+      "status": "single_source",
+      "volatility": "periodic",
+      "note": "Visitor details required: name, gender, DOB, purpose of visit, address"
+    },
+
+    {
+      "key": "clearance.officials_board",
+      "value": "Officials do not board the vessel unless specifically ordered. Clearance completed once the port agent has checked arrival documents.",
+      "aliases": ["When will officials board", "Who and how many officials will board"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "clearance.location",
+      "value": "Terminal",
+      "aliases": ["Clearance location"],
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "clearance.face_check_required",
+      "value": "Required at the first Japanese port of call only; not required at transit ports.",
+      "aliases": ["Are facechecks required for Immigration"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "clearance.pre_arrival_documents",
+      "value": "Departure guest manifest with nationality breakdown per port; embarking/disembarking guest list; departure crew manifest with nationality breakdown; embarking/disembarking crew list.",
+      "aliases": ["What documents do you require to be sent prior to arrival"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "clearance.arrival_documents",
+      "value": "Arrival guest manifest + nationality breakdown (3 sets); embark/disembark guest list (3 sets); arrival crew manifest + nationality breakdown (3 sets); embark/disembark crew list (3 sets); port of call list (3 copies); ship's store list (1 set); arms/narcotics list (1 copy); nil list (1 copy); ship's registry (1 copy); international tonnage certificate (1 copy).",
+      "aliases": ["What paperwork will be required upon arrival"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "clearance.forms_accepted",
+      "value": "Ship's own forms are acceptable; local Japan NACCS format preferred.",
+      "aliases": ["Do authorities accept generic ship-produced forms"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "clearance.documents_to_go_ashore",
+      "value": "Passengers: original passport + ship's ID. Crew: original passport or seaman's book + ship's ID + shore pass.",
+      "aliases": ["What documents do I need to go ashore"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "clearance.passport_stamping",
+      "value": "Passports are not stamped.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "clearance.customs_declaration_card",
+      "value": "Required for disembarking passengers and disembarking crew only.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "clearance.ballast_water_form",
+      "value": "Not required prior to arrival",
+      "aliases": ["Is a ballast water form required"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "visa.passport_validity",
+      "value": "Passport must remain valid until final departure from Japan.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "visa.crew_requirement",
+      "value": "Crew do not require a visa to enter Japan regardless of nationality.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "visa.on_arrival",
+      "value": "Visa on arrival is not available in Japan.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "visa.guest_reference_url",
+      "value": "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "visa.restricted_guest_consequence",
+      "value": "Guest is registered on the not-to-land list and cannot go ashore at any Japanese port. No impact on ship operations.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+
+    {
+      "key": "environment.discharge_distance_rule",
+      "value": "All discharges (grey water, AWP-treated blackwater, dechlorinated pool/spa water, comminuted food waste, EGCS wash water) permitted only beyond 12 NM from the nearest land in Japan — NOT 3 NM.",
+      "status": "single_source",
+      "volatility": "periodic",
+      "note": "船社側の資料には3NMと記載されていることが多い。毎回訂正が必要な最重要項目"
+    },
+    {
+      "key": "environment.ballast_water",
+      "value": "Ballast water discharge is prohibited within Kagoshima port area and at Japanese ports generally.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "environment.incinerator",
+      "value": "May be used beyond 12 NM from the nearest land in Japan, provided equipment meets MARPOL Annex VI Regulation IV.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "environment.egcs_wash_water",
+      "value": "Permitted beyond 12 NM from the nearest land; oil concentration must be 100 ppm or less.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "environment.hull_cleaning",
+      "value": "Rinsing of hull, underwater hull cleaning, propeller polishing and spot painting permitted upon approval of the Port Authority.",
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "environment.fuel_restriction",
+      "value": "0.5% sulphur per MARPOL Annex VI",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "environment.washing_permissions",
+      "value": "Fresh water washing, high-pressure fresh water waterline washing, washing with approved environmentally friendly cleaners, chipping and painting with protective measures, and use of paint rafts with protective measures are all permitted.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "environment.noise_restriction",
+      "value": "No noise restrictions in the port.",
+      "aliases": ["Are there any noise restrictions"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+
+    {
+      "key": "tourist.usd_accepted",
+      "value": "USD is not accepted at most shops and restaurants. Currency exchange before going ashore is recommended. Credit card acceptance varies by establishment.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tourist.money_exchange",
+      "value": "One (1) currency exchange machine available in the terminal.",
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tourist.tax_refund",
+      "value": "Not available",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tourist.postal_service",
+      "value": "Available via port agent. Postcards JPY 100 to all regions. Letters up to 20 g: JPY 140 (USA/Europe/Australia), JPY 120 (Asia).",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tourist.nearest_atm",
+      "value": "No ATM at Marine Port Kagoshima. Nearest is inside a 7-Eleven, approx. 2 km / 30 minutes on foot.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tourist.nearest_shopping_mall",
+      "value": "AEON Mall, approx. 3.3 km. Open 1000-2100 LT. Taxi recommended.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tourist.nearest_supermarket",
+      "value": "OPSIA, approx. 1.8 km. Open 1000-2100 LT. Taxi recommended.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tourist.main_shopping_area",
+      "value": "Tenmonkan, approx. 8 km from the port. Taxi is the easiest transport.",
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "tourist.recommended_sights",
+      "value": "Sakurajima active volcano",
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "tourist.seamans_center",
+      "value": "No seaman's center at Kagoshima port.",
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "tourist.food_ashore_restriction",
+      "value": "Under animal and plant quarantine regulations the following may not be taken ashore in Japan: meat, fruit and vegetables, eggs, dairy products, nuts, plants and seeds.",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "tourist.exchange_rate",
+      "value": "1 USD = approx. 161 JPY",
+      "status": "single_source",
+      "volatility": "expiring",
+      "as_of": "2024-07-02",
+      "note": "2年以上前のレート。出力前に必ず更新すること"
+    },
+
+    {
+      "key": "port.annual_cruise_calls",
+      "value": "129 ships (2025)",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "port.call_type",
+      "value": "In-transit calls",
+      "aliases": ["Do you handle turnaround calls, in-transit calls or both"],
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "port.largest_vessel",
+      "value": "SPECTRUM OF THE SEAS — 347.1 m LOA, 8.8 m draft, called 31 March 2026",
+      "status": "single_source",
+      "volatility": "periodic",
+      "note": "Adora回答ではMSC BELLISSIMA (315.83m) も併記されており、どちらが「最大」かの表記が曖昧"
+    },
+    {
+      "key": "port.schedule_url",
+      "value": "https://www.pref.kagoshima.jp/ah09/infra/port/minato/cruising/kagoshimakour8yotei.html",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "port.pax_walk_on_pier",
+      "value": "Yes",
+      "aliases": ["Are passengers able to walk on the pier"],
+      "status": "confirmed",
+      "volatility": "stable"
+    },
+    {
+      "key": "port.wifi",
+      "value": null,
+      "status": "single_source",
+      "volatility": "periodic",
+      "note": "General Port Questionnaire で未回答のまま。要確認"
+    },
+    {
+      "key": "port.development_plans",
+      "value": "N/A",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "port.service_animals",
+      "value": "Refer to Animal Quarantine Service Japan for procedures and required documents: https://www.maff.go.jp/aqs/languages/info.html",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+    {
+      "key": "port.terminal_address_en",
+      "value": "Chuo-ko Shinmachi 1, Kagoshima City, 890-0076, Japan",
+      "status": "single_source",
+      "volatility": "stable"
+    },
+    {
+      "key": "port.terminal_address_ja",
+      "value": "〒890-0076 鹿児島県鹿児島市中央港新町1",
+      "status": "single_source",
+      "volatility": "stable"
+    },
+
+    {
+      "key": "contacts.port_authority",
+      "value": "Kagoshima Regional Promotion Bureau — Tel +81-99-805-7414, kago-gcyousei@pref.kagoshima.lg.jp",
+      "status": "conflict",
+      "volatility": "periodic",
+      "note": "Discovery回答では Port Authority = Kagoshima Prefectural Government / +81-99-286-3636 と記載。Adora回答では Terminal operator が県庁(+81-99-286-3634)。役割の割り当てが一致していない"
+    },
+    {
+      "key": "contacts.harbour_master",
+      "value": "Kagoshima Coast Guard — Tel +81-99-222-6681, Fax +81-99-222-6716, VHF Ch.16, jcg10-kagoshima-9j9c@ki.mlit.go.jp",
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "contacts.pfso",
+      "value": "Port Facility Security Officer — Tel +81-99-805-7301, Fax +81-99-805-7406",
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "contacts.fire_ambulance",
+      "value": "119 or +81-99-251-0119 (Minami Fire Department, Wakita Contingent)",
+      "status": "conflict",
+      "volatility": "periodic",
+      "note": "Discovery回答では +81-99-224-111（桁数が不足）。誤記の可能性が高い"
+    },
+    {
+      "key": "contacts.police",
+      "value": "110 or +81-99-269-0110 (Kagoshima-minami Police Station)",
+      "status": "confirmed",
+      "volatility": "periodic"
+    },
+    {
+      "key": "contacts.medical",
+      "value": "Yonemori Hospital — Tel +81-99-230-0100, Fax +81-99-230-0101",
+      "status": "single_source",
+      "volatility": "periodic"
+    },
+
+    {
+      "key": "per_call.eta_pilot_station",
+      "value": null,
+      "status": "placeholder",
+      "volatility": "per_call"
+    },
+    {
+      "key": "per_call.etb",
+      "value": null,
+      "status": "placeholder",
+      "volatility": "per_call"
+    },
+    {
+      "key": "per_call.etd",
+      "value": null,
+      "status": "placeholder",
+      "volatility": "per_call"
+    },
+    {
+      "key": "per_call.tidal_data",
+      "value": null,
+      "status": "placeholder",
+      "volatility": "per_call",
+      "note": "当日のHW/LW時刻と潮位。毎回取得する"
+    },
+    {
+      "key": "per_call.other_ships_in_port",
+      "value": null,
+      "status": "placeholder",
+      "volatility": "per_call"
+    },
+    {
+      "key": "per_call.immigration_first_port",
+      "value": null,
+      "status": "placeholder",
+      "volatility": "per_call",
+      "note": "日本国内の初寄港地かどうかでフェイスチェックの要否が変わる"
+    },
+    {
+      "key": "per_line.general_agent",
+      "value": null,
+      "status": "placeholder",
+      "volatility": "per_line",
+      "note": "船社ごとに異なる（実例: Wilhelmsen / Inchcape Shipping Tokyo）。絶対に固定値にしないこと"
+    },
+    {
+      "key": "per_line.security_equipment_provider",
+      "value": null,
+      "status": "placeholder",
+      "volatility": "per_line"
+    }
+  ]
+}
